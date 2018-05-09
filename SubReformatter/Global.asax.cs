@@ -6,6 +6,11 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+using Hangfire;
+using Hangfire.MemoryStorage;
+
+using SubReformatter.Controllers;
+
 namespace SubReformatter
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -16,6 +21,8 @@ namespace SubReformatter
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
         }
     }
 }

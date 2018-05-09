@@ -15,14 +15,19 @@ namespace SubReformatter.Controllers
     {
         public ActionResult Index()
         {
-            var path = ConfigurationManager.AppSettings["srtPath"];
-            var myFiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories)
-                .Where(s => s.Contains(".srt"));
-            AnsiConvert(myFiles);
-            return View(myFiles.ToList());
+            var myfiles = ConvertFiles();
+            return this.View(myfiles);
         }
 
-        public void AnsiConvert(IEnumerable<string> fileList)
+        public static List<string> ConvertFiles()
+        {
+            var path = ConfigurationManager.AppSettings["srtPath"];
+            var myFiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories).Where(s => s.Contains(".srt"));
+            AnsiConvert(myFiles);
+            return myFiles.ToList();
+        }
+
+        public static void  AnsiConvert(IEnumerable<string> fileList)
         {
             Parallel.ForEach(fileList, f => { ConvertFileEncoding(f, Encoding.UTF8); });
         }
