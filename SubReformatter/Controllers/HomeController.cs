@@ -25,7 +25,7 @@ namespace SubReformatter.Controllers
             List<string> srtFiles = new List<string>();
             foreach (var path in pathList)
             {
-                srtFiles.AddRange(Directory.GetFiles(path, "*.*", SearchOption.AllDirectories).Where(s => s.Contains(".srt")));
+                srtFiles.AddRange(Directory.GetFiles(path, "*.*", SearchOption.AllDirectories).Where(s => s.Contains(".srt") && !Equals(GetEncoding(s), Encoding.UTF8)));
             }
             AnsiConvert(srtFiles);
             return srtFiles.ToList();
@@ -47,7 +47,7 @@ namespace SubReformatter.Controllers
         {
             try
             {
-                if (Equals(GetEncoding(path), Encoding.UTF8)) return;
+                //if (Equals(GetEncoding(path), Encoding.UTF8)) return;
 
                 Encoding fileEncode = Encoding.GetEncoding("ISO-8859-9");
 

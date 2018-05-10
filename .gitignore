@@ -50,3 +50,6 @@ qrc_*.cpp
 #Makefiles
 dev/engine/Makefile
 gui/gui/Makefile
+/.vs
+/packages
+/SubReformatter/Properties/PublishProfiles
