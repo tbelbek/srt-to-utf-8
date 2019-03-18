@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using SimpleLogger;
 
 namespace SubReformatter.Controllers
 {
@@ -32,6 +33,7 @@ namespace SubReformatter.Controllers
         public static void AnsiConvert(IEnumerable<string> fileList)
         {
             Parallel.ForEach(fileList, f => { ConvertFileEncoding(f, Encoding.UTF8); });
+            LogHelper.GetLogger().Info($"Conversion done for {fileList.Count()} items.");
         }
 
         /// <summary>
@@ -45,8 +47,6 @@ namespace SubReformatter.Controllers
         {
             try
             {
-                //if (Equals(GetEncoding(path), Encoding.UTF8)) return;
-
                 Encoding fileEncode = Encoding.GetEncoding("ISO-8859-9");
 
                 string stt = System.IO.File.ReadAllText(path, fileEncode);
@@ -61,9 +61,9 @@ namespace SubReformatter.Controllers
 
                 System.IO.File.WriteAllText(path, utf8_String, Encoding.UTF8);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                LogHelper.GetLogger().Error(ex.Message);
             }
 
         }
