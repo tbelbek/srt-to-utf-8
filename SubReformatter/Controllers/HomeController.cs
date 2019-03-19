@@ -32,7 +32,8 @@ namespace SubReformatter.Controllers
 
         public static void AnsiConvert(IEnumerable<string> fileList)
         {
-            Parallel.ForEach(fileList, f => { ConvertFileEncoding(f, Encoding.UTF8); });
+            //Parallel.ForEach(fileList, f => { ConvertFileEncoding(f, Encoding.UTF8); });
+            Parallel.ForEach(fileList, f => { EncodeStringNew(f, Encoding.UTF8); });
             LogHelper.GetLogger().Info($"Conversion done for {fileList.Count()} items.");
         }
 
@@ -66,6 +67,28 @@ namespace SubReformatter.Controllers
                 LogHelper.GetLogger().Error(ex.Message);
             }
 
+        }
+
+        public static void EncodeStringNew(string path, Encoding destEncoding)
+        {
+            Encoding encoding = Encoding.Default;
+            String original = String.Empty;
+
+            using (StreamReader sr = new StreamReader(path, Encoding.Default))
+            {
+                original = sr.ReadToEnd();
+                encoding = sr.CurrentEncoding;
+                sr.Close();
+            }
+
+            if (encoding == Encoding.UTF8)
+                return;
+
+            byte[] encBytes = encoding.GetBytes(original);
+            byte[] utf8Bytes = Encoding.Convert(encoding, Encoding.UTF8, encBytes);
+            var utf8String= Encoding.UTF8.GetString(utf8Bytes);
+
+            System.IO.File.WriteAllText(path, utf8String, Encoding.UTF8);
         }
 
         public static Encoding GetEncoding(string filename)
