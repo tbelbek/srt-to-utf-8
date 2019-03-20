@@ -74,7 +74,7 @@ namespace SubReformatter.Controllers
             Encoding encoding = Encoding.Default;
             String original = String.Empty;
 
-            using (StreamReader sr = new StreamReader(path, Encoding.Default))
+            using (StreamReader sr = new StreamReader(path))
             {
                 original = sr.ReadToEnd();
                 encoding = sr.CurrentEncoding;
