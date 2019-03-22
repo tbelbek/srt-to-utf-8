@@ -4,6 +4,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using SimpleLogger;
@@ -28,6 +29,16 @@ namespace SubReformatter.Controllers
             }
             AnsiConvert(srtFiles);
             return srtFiles.ToList();
+        }
+
+        public static string ReplaceAll(string seed, List<KeyValuePair<string, string>> replacementList)
+        {
+            foreach (var keyValuePair in replacementList)
+            {
+                seed = Regex.Replace(seed, keyValuePair.Key, keyValuePair.Value);
+            }
+
+            return seed;
         }
 
         public static void AnsiConvert(IEnumerable<string> fileList)
@@ -83,6 +94,8 @@ namespace SubReformatter.Controllers
 
             if (encoding == Encoding.UTF8)
                 return;
+
+            original = ReplaceAll(original, CharReplacements.GetList());
 
             byte[] encBytes = encoding.GetBytes(original);
             byte[] utf8Bytes = Encoding.Convert(encoding, Encoding.UTF8, encBytes);
