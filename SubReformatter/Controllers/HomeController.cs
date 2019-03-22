@@ -92,16 +92,16 @@ namespace SubReformatter.Controllers
                 sr.Close();
             }
 
-            if (encoding == Encoding.UTF8)
-                return;
+            //if (encoding == Encoding.UTF8)
+            //    return;
 
             original = ReplaceAll(original, CharReplacements.GetList());
 
-            byte[] encBytes = encoding.GetBytes(original);
-            byte[] utf8Bytes = Encoding.Convert(encoding, Encoding.UTF8, encBytes);
-            var utf8String= Encoding.UTF8.GetString(utf8Bytes);
+            //byte[] encBytes = encoding.GetBytes(original);
+            //byte[] utf8Bytes = Encoding.Convert(encoding, Encoding.UTF8, encBytes);
+            //var utf8String= Encoding.UTF8.GetString(utf8Bytes);
 
-            System.IO.File.WriteAllText(path, utf8String, Encoding.UTF8);
+            System.IO.File.WriteAllText(path, original, Encoding.UTF8);
         }
 
         public static Encoding GetEncoding(string filename)
