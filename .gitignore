@@ -53,3 +53,6 @@ gui/gui/Makefile
 /.vs
 /packages
 /SubReformatter/Properties/PublishProfiles
+/SubReformatter/bin/Release/Publish
+/SubtReqMakerConsole/bin/Debug
+/SubtReqMakerConsole/obj/Debug

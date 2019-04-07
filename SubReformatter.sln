@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubReformatter", "SubReformatter\SubReformatter.csproj", "{E9DCB32A-6113-451C-886C-819819901E81}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtReqMakerConsole", "SubtReqMakerConsole\SubtReqMakerConsole.csproj", "{8545EF92-76D3-4F7E-A7EA-C6BD8EBC2695}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E9DCB32A-6113-451C-886C-819819901E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9DCB32A-6113-451C-886C-819819901E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9DCB32A-6113-451C-886C-819819901E81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8545EF92-76D3-4F7E-A7EA-C6BD8EBC2695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8545EF92-76D3-4F7E-A7EA-C6BD8EBC2695}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8545EF92-76D3-4F7E-A7EA-C6BD8EBC2695}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8545EF92-76D3-4F7E-A7EA-C6BD8EBC2695}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
