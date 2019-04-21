@@ -56,19 +56,27 @@ namespace SubtReqMakerConsole
 
         public static void EncodeStringNew(string path, Encoding destEncoding)
         {
-            Encoding encoding;
-            String original = String.Empty;
-
-            using (StreamReader sr = new StreamReader(path))
+            try
             {
-                original = sr.ReadToEnd();
-                encoding = sr.CurrentEncoding;
-                sr.Close();
+                Encoding encoding;
+                string original = string.Empty;
+
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    original = sr.ReadToEnd();
+                    encoding = sr.CurrentEncoding;
+                    sr.Close();
+                }
+
+                original = ReplaceAll(original, CharReplacements.GetList());
+
+                File.WriteAllText(path, original, Encoding.UTF8);
             }
-
-            original = ReplaceAll(original, CharReplacements.GetList());
-
-            System.IO.File.WriteAllText(path, original, Encoding.UTF8);
+            catch (Exception ex)
+            {
+                return;
+                //throw;
+            }
         }
 
         public static string ReplaceAll(string seed, List<KeyValuePair<string, string>> replacementList)
